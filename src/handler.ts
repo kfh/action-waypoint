@@ -223,7 +223,7 @@ export async function handleDeploy(ctx: Ctx, payload: EventPayloads.WebhookPaylo
 
   // Run the deploy
   try {
-    const buildCode = await exec('waypoint', ['deploy', ...waypointOptions], options);
+    const buildCode = await exec('waypoint', ['deploy','-release=false', ...waypointOptions], options);
     if (buildCode !== 0) {
       throw new Error(`deploy failed with exit code ${buildCode}`);
     }
