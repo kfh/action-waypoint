@@ -294,7 +294,7 @@ function handleDeploy(ctx, payload) {
         yield createDeploymentStatus(ctx, deploy.id, githubDeploymentState.Pending);
         // Run the deploy
         try {
-            const buildCode = yield exec_1.exec('waypoint', ['deploy', ...waypointOptions], options);
+            const buildCode = yield exec_1.exec('waypoint', ['deploy', '-release=false', ...waypointOptions], options);
             if (buildCode !== 0) {
                 throw new Error(`deploy failed with exit code ${buildCode}`);
             }
