@@ -324,7 +324,7 @@ function handleRelease(ctx, payload) {
         // Run init
         yield initWaypoint(ctx);
         try {
-            const releaseCode = yield exec_1.exec('waypoint', ['release', ...waypointOptions]);
+            const releaseCode = yield exec_1.exec('waypoint', ['release', '-prune-retain=0', ...waypointOptions]);
             if (releaseCode !== 0) {
                 yield updateCommitStatus(ctx, githubState.Error);
                 throw new Error(`release failed with exit code ${releaseCode}`);
