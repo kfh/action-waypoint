@@ -255,7 +255,7 @@ export async function handleRelease(ctx: Ctx, payload: EventPayloads.WebhookPayl
   await initWaypoint(ctx);
 
   try {
-    const releaseCode = await exec('waypoint', ['release', ...waypointOptions]);
+    const releaseCode = await exec('waypoint', ['release','-prune-retain=0', ...waypointOptions]);
     if (releaseCode !== 0) {
       await updateCommitStatus(ctx, githubState.Error);
       throw new Error(`release failed with exit code ${releaseCode}`);
